@@ -641,6 +641,7 @@ namespace reportFromWaterApp
         {
             if (dataPicker.Value.Date == DateTime.Now.Date)
             {
+                // далее для гита
                 dataGridViewContainer();
             }
         }
