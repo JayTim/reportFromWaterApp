@@ -636,7 +636,7 @@ namespace reportFromWaterApp
             protocolWaterNumber.Text = "1";
         }
 
-        //автоматическое обновление 
+        //автоматический релоад по таймеру
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (dataPicker.Value.Date == DateTime.Now.Date)
