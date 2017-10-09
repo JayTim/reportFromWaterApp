@@ -33,19 +33,19 @@ namespace reportFromWaterApp
             dataGridView1.Rows[3].Cells[0].Value = "СГБ - 4,0";
 
             dataGridView1.Rows[0].Cells[1].Value = getLastSN_SVD15();
-            dataGridView1.Rows[1].Cells[1].Value = getLastSN_SGB("\\1.8");
-            dataGridView1.Rows[2].Cells[1].Value = getLastSN_SGB("\\3.2");
-            dataGridView1.Rows[3].Cells[1].Value = getLastSN_SGB("\\4.0");
+            dataGridView1.Rows[1].Cells[1].Value = getLastSN_SGB18();
+            dataGridView1.Rows[2].Cells[1].Value = getLastSN_SGB32();
+            dataGridView1.Rows[3].Cells[1].Value = getLastSN_SGB40();
 
             dataGridView1.Rows[0].Cells[2].Value = getCount_SVD15();
-            dataGridView1.Rows[1].Cells[2].Value = getCount_SGB("\\1.8");
-            dataGridView1.Rows[2].Cells[2].Value = getCount_SGB("\\3.2");
-            dataGridView1.Rows[3].Cells[2].Value = getCount_SGB("\\4.0");
+            dataGridView1.Rows[1].Cells[2].Value = getCount_SGB18();
+            dataGridView1.Rows[2].Cells[2].Value = getCount_SGB32();
+            dataGridView1.Rows[3].Cells[2].Value = getCount_SGB40();
 
             dataGridView1.Rows[0].Cells[3].Value = getMissed_SVD15();
-            dataGridView1.Rows[1].Cells[3].Value = getMissed_SGB("\\1.8");
-            dataGridView1.Rows[2].Cells[3].Value = getMissed_SGB("\\3.2");
-            dataGridView1.Rows[3].Cells[3].Value = getMissed_SGB("\\4.0");
+            dataGridView1.Rows[1].Cells[3].Value = getMissed_SGB18();
+            dataGridView1.Rows[2].Cells[3].Value = getMissed_SGB32();
+            dataGridView1.Rows[3].Cells[3].Value = getMissed_SGB40();
         }
 
         //Ищем последний номер счетчика
@@ -68,6 +68,18 @@ namespace reportFromWaterApp
             {
                 return "Не поверялись";
             }
+        }
+        string getLastSN_SGB18()
+        {
+            return getLastSN_SGB("\\1.8");
+        }
+        string getLastSN_SGB32()
+        {
+            return getLastSN_SGB("\\3.2");
+        }
+        string getLastSN_SGB40()
+        {
+            return getLastSN_SGB("\\4.0");
         }
         string getLastSN_SGB(string pathType)
         {
@@ -122,6 +134,18 @@ namespace reportFromWaterApp
 
             return (itemsFiltred.Count() - spaceCount).ToString();
         }
+        string getCount_SGB18()
+        {
+            return getCount_SGB("\\1.8");
+        }
+        string getCount_SGB32()
+        {
+            return getCount_SGB("\\3.2");
+        }
+        string getCount_SGB40()
+        {
+            return getCount_SGB("\\4.0");
+        }
         string getCount_SGB(string pathType)
         {
             string path = "C:\\поверка\\Установка\\" + dataPicker.Value.ToString("yyyy") + "\\" + dataPicker.Value.ToString("MM") + "\\" + dataPicker.Value.ToString("dd") + pathType;
@@ -141,6 +165,18 @@ namespace reportFromWaterApp
         {
             string missedSN = "нет пропусков";
             return missedSN;
+        }
+        string getMissed_SGB18()
+        {
+            return getMissed_SGB("\\1.8");
+        }
+        string getMissed_SGB32()
+        {
+            return getMissed_SGB("\\3.2");
+        }
+        string getMissed_SGB40()
+        {
+            return getMissed_SGB("\\4.0");
         }
         string getMissed_SGB(string pathType)
         {
@@ -221,17 +257,17 @@ namespace reportFromWaterApp
                 workSheet.Cells[i + numberStartCell, "B"] = "СВД-15";
                 workSheet.Cells[i + numberStartCell, "C"] = "15";
 
-                workSheet.Cells[i + numberStartCell, "D"] = itemsFiltred[i].ContainsKey("Qmin") == true ? (float.Parse(itemsFiltred[i]["Qmin"])/1000).ToString(): "NoVal";
-                workSheet.Cells[i + numberStartCell, "E"].Formula = "=(D" + (i+numberStartCell).ToString() + "-(D" + (i + numberStartCell).ToString() + "*G" + (i + numberStartCell).ToString() + "*0.01))*360/3600";
-                workSheet.Cells[i + numberStartCell, "F"].Formula = "=(D" + (i + numberStartCell).ToString() +" )*360/3600";
+                workSheet.Cells[i + numberStartCell, "D"] = itemsFiltred[i].ContainsKey("Qmin") == true ? (float.Parse(itemsFiltred[i]["Qmin"]) / 1000).ToString() : "NoVal";
+                workSheet.Cells[i + numberStartCell, "E"].Formula = "=(D" + (i + numberStartCell).ToString() + "-(D" + (i + numberStartCell).ToString() + "*G" + (i + numberStartCell).ToString() + "*0.01))*360/3600";
+                workSheet.Cells[i + numberStartCell, "F"].Formula = "=(D" + (i + numberStartCell).ToString() + " )*360/3600";
                 workSheet.Cells[i + numberStartCell, "G"] = itemsFiltred[i].ContainsKey("dVmin") == true ? itemsFiltred[i]["dVmin"] : "NoVal";
 
-                workSheet.Cells[i + numberStartCell, "H"] = itemsFiltred[i].ContainsKey("Qmid") == true ? (float.Parse(itemsFiltred[i]["Qmid"])/1000).ToString() : "NoVal";
+                workSheet.Cells[i + numberStartCell, "H"] = itemsFiltred[i].ContainsKey("Qmid") == true ? (float.Parse(itemsFiltred[i]["Qmid"]) / 1000).ToString() : "NoVal";
                 workSheet.Cells[i + numberStartCell, "I"].Formula = "=(H" + (i + numberStartCell).ToString() + "-(H" + (i + numberStartCell).ToString() + "*K" + (i + numberStartCell).ToString() + "*0.01))*160/3600";
                 workSheet.Cells[i + numberStartCell, "J"].Formula = "=(H" + (i + numberStartCell).ToString() + " )*160/3600";
                 workSheet.Cells[i + numberStartCell, "K"] = itemsFiltred[i].ContainsKey("dVmid") == true ? itemsFiltred[i]["dVmid"] : "NoVal";
 
-                workSheet.Cells[i + numberStartCell, "L"] = itemsFiltred[i].ContainsKey("Qmax") == true ? (float.Parse(itemsFiltred[i]["Qmax"])/1000).ToString() : "NoVal";
+                workSheet.Cells[i + numberStartCell, "L"] = itemsFiltred[i].ContainsKey("Qmax") == true ? (float.Parse(itemsFiltred[i]["Qmax"]) / 1000).ToString() : "NoVal";
                 workSheet.Cells[i + numberStartCell, "M"].Formula = "=(L" + (i + numberStartCell).ToString() + "-(L" + (i + numberStartCell).ToString() + "*O" + (i + numberStartCell).ToString() + "*0.01))*60/3600";
                 workSheet.Cells[i + numberStartCell, "N"].Formula = "=(L" + (i + numberStartCell).ToString() + " )*60/3600";
                 workSheet.Cells[i + numberStartCell, "O"] = itemsFiltred[i].ContainsKey("dVmax") == true ? itemsFiltred[i]["dVmax"] : "NoVal";
@@ -264,7 +300,7 @@ namespace reportFromWaterApp
                 Directory.CreateDirectory(@"C:\report\reportFromWaterApp");
             }
 
-            workSheet.SaveAs(@"C:\report\reportFromWaterApp\" + dataPicker.Value.ToString("dd.MM.yyyy") + "-" + personalNumber.Text + "-" +  protocolWaterNumber.Text + ".xlsx");
+            workSheet.SaveAs(@"C:\report\reportFromWaterApp\" + dataPicker.Value.ToString("dd.MM.yyyy") + "-" + personalNumber.Text + "-" + protocolWaterNumber.Text + ".xlsx");
 
             // Отображаем файл Excel
             excelApp.Visible = true;
@@ -300,7 +336,7 @@ namespace reportFromWaterApp
                 smtp.Send(m);
             }
 
-            catch(Exception e)
+            catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
@@ -441,7 +477,7 @@ namespace reportFromWaterApp
         //Парсим текстовый файл
         List<Dictionary<string, string>> items = new List<Dictionary<string, string>>();
         void convertTxtFile()
-        { 
+        {
             char[] splitSeparators1 = { ';' };
             char[] splitSeparators2 = { '=' };
 
@@ -499,7 +535,7 @@ namespace reportFromWaterApp
             char[] splitSeparators = { '=' };
 
             if (Directory.Exists(path + pathType))
-            { 
+            {
                 string[] files = Directory.GetFiles(path + pathType);
                 for (int i = 0; i < files.Count(); i++)
                 {
@@ -537,9 +573,9 @@ namespace reportFromWaterApp
                             itemsList.Add(pathType.Trim('\\'));
                             items2.Add(itemsList);
                         }
-                        if (pathType == "\\1.8") gasCountType_1_8 ++;
-                        if (pathType == "\\3.2") gasCountType_3_2 ++;
-                        if (pathType == "\\4.0") gasCountType_4_0 ++;
+                        if (pathType == "\\1.8") gasCountType_1_8++;
+                        if (pathType == "\\3.2") gasCountType_3_2++;
+                        if (pathType == "\\4.0") gasCountType_4_0++;
                     }
 
                     catch (Exception e)
@@ -591,7 +627,7 @@ namespace reportFromWaterApp
 
             // добавляем набор элементов в окнах выбора
             personalNumber.Items.AddRange(new string[] { "162", "145", "196" });
-            protocolGasNumber.Items.AddRange(new string[] { "1", "2", "3", "4", "5", "6"});
+            protocolGasNumber.Items.AddRange(new string[] { "1", "2", "3", "4", "5", "6" });
             protocolWaterNumber.Items.AddRange(new string[] { "1", "2", "3", "4", "5", "6" });
 
             //по умолчанию
@@ -600,13 +636,14 @@ namespace reportFromWaterApp
             protocolWaterNumber.Text = "1";
         }
 
-        //автоматический релоад по таймеру
+        //автоматическое обновление 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            //если датагридвью == текущей дате то:
             if (dataPicker.Value.Date == DateTime.Now.Date)
             {
                 dataGridViewContainer();
             }
         }
-    } 
+    }
 }
