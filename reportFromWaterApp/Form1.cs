@@ -33,9 +33,9 @@ namespace reportFromWaterApp
             dataGridView1.Rows[3].Cells[0].Value = "СГБ - 4,0";
 
             dataGridView1.Rows[0].Cells[1].Value = getLastSN_SVD15();
-            dataGridView1.Rows[1].Cells[1].Value = getLastSN_SGB18();
-            dataGridView1.Rows[2].Cells[1].Value = getLastSN_SGB32();
-            dataGridView1.Rows[3].Cells[1].Value = getLastSN_SGB40();
+            dataGridView1.Rows[1].Cells[1].Value = getLastSN_SGB("\\1.8");
+            dataGridView1.Rows[2].Cells[1].Value = getLastSN_SGB("\\3.2");
+            dataGridView1.Rows[3].Cells[1].Value = getLastSN_SGB("\\4.0");
 
             dataGridView1.Rows[0].Cells[2].Value = getCount_SVD15();
             dataGridView1.Rows[1].Cells[2].Value = getCount_SGB18();
@@ -68,18 +68,6 @@ namespace reportFromWaterApp
             {
                 return "Не поверялись";
             }
-        }
-        string getLastSN_SGB18()
-        {
-            return getLastSN_SGB("\\1.8");
-        }
-        string getLastSN_SGB32()
-        {
-            return getLastSN_SGB("\\3.2");
-        }
-        string getLastSN_SGB40()
-        {
-            return getLastSN_SGB("\\4.0");
         }
         string getLastSN_SGB(string pathType)
         {
