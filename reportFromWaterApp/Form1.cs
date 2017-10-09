@@ -639,6 +639,7 @@ namespace reportFromWaterApp
         //автоматическое обновление 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            //если датагридвью == текущей дате то:
             if (dataPicker.Value.Date == DateTime.Now.Date)
             {
                 dataGridViewContainer();
