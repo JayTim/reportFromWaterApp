@@ -605,7 +605,6 @@ namespace reportFromWaterApp
         {
             if (dataPicker.Value.Date == DateTime.Now.Date)
             {
-                // second line
                 dataGridViewContainer();
             }
         }
