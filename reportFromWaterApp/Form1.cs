@@ -38,14 +38,14 @@ namespace reportFromWaterApp
             dataGridView1.Rows[3].Cells[1].Value = getLastSN_SGB("\\4.0");
 
             dataGridView1.Rows[0].Cells[2].Value = getCount_SVD15();
-            dataGridView1.Rows[1].Cells[2].Value = getCount_SGB18();
-            dataGridView1.Rows[2].Cells[2].Value = getCount_SGB32();
-            dataGridView1.Rows[3].Cells[2].Value = getCount_SGB40();
+            dataGridView1.Rows[1].Cells[2].Value = getCount_SGB("\\1.8");
+            dataGridView1.Rows[2].Cells[2].Value = getCount_SGB("\\3.2");
+            dataGridView1.Rows[3].Cells[2].Value = getCount_SGB("\\4.0");
 
             dataGridView1.Rows[0].Cells[3].Value = getMissed_SVD15();
-            dataGridView1.Rows[1].Cells[3].Value = getMissed_SGB18();
-            dataGridView1.Rows[2].Cells[3].Value = getMissed_SGB32();
-            dataGridView1.Rows[3].Cells[3].Value = getMissed_SGB40();
+            dataGridView1.Rows[1].Cells[3].Value = getMissed_SGB("\\1.8");
+            dataGridView1.Rows[2].Cells[3].Value = getMissed_SGB("\\3.2");
+            dataGridView1.Rows[3].Cells[3].Value = getMissed_SGB("\\4.0");
         }
 
         //Ищем последний номер счетчика
@@ -122,18 +122,6 @@ namespace reportFromWaterApp
 
             return (itemsFiltred.Count() - spaceCount).ToString();
         }
-        string getCount_SGB18()
-        {
-            return getCount_SGB("\\1.8");
-        }
-        string getCount_SGB32()
-        {
-            return getCount_SGB("\\3.2");
-        }
-        string getCount_SGB40()
-        {
-            return getCount_SGB("\\4.0");
-        }
         string getCount_SGB(string pathType)
         {
             string path = "C:\\поверка\\Установка\\" + dataPicker.Value.ToString("yyyy") + "\\" + dataPicker.Value.ToString("MM") + "\\" + dataPicker.Value.ToString("dd") + pathType;
@@ -153,18 +141,6 @@ namespace reportFromWaterApp
         {
             string missedSN = "нет пропусков";
             return missedSN;
-        }
-        string getMissed_SGB18()
-        {
-            return getMissed_SGB("\\1.8");
-        }
-        string getMissed_SGB32()
-        {
-            return getMissed_SGB("\\3.2");
-        }
-        string getMissed_SGB40()
-        {
-            return getMissed_SGB("\\4.0");
         }
         string getMissed_SGB(string pathType)
         {
